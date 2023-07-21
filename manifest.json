@@ -2,5 +2,20 @@
   "manifest_version": 3,
   "name": "FPjs-Blocker",
   "version": "1.0.0",
-  "action": { "default_popup": "index.html" }
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback"
+  ],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": false,
+        "path":"rule_1.json"
+      }
+    ]
+  }
 }
