@@ -1,5 +1,5 @@
 {
-  "name": "fpjs-blocler-test",
+  "name": "fpjs-blocker",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -9,6 +9,9 @@
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.14",
-    "vite": "^2.9.15"
+    "vite": "^2.9.15",
+    "prettier": "^3.0.0"
+  },
+  "dependencies": {
   }
 }

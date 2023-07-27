@@ -1,50 +1,54 @@
-import './style.css'
-document.querySelector('#app').innerHTML = `
+import "./style.css";
+document.querySelector("#app").innerHTML = `
         <div class="checkbox-block">
-       
         <input type="checkbox" id="myCheckbox">
         Block FPJS
       </div>
-`
+`;
 
 document.addEventListener("DOMContentLoaded", () => {
-    const checkbox = document.querySelector("#myCheckbox");
-    if (checkbox) {
-        const savedCheckboxValue = localStorage.getItem("myCheckboxValue");
-        checkbox.checked = savedCheckboxValue === 'true';
-        if (savedCheckboxValue === 'true'){
-            enableRule()
-        }
+  const checkbox = document.querySelector("#myCheckbox");
+  if (checkbox) {
+    const blockFPJS = localStorage.getItem("blockFPJS");
+    const isBlocked = blockFPJS === "true";
+    checkbox.checked = isBlocked;
 
-        checkbox.addEventListener("change", handleCheckboxChange);
+    if (isBlocked) {
+      enableRule();
     }
 
-    function handleCheckboxChange() {
-        localStorage.setItem("myCheckboxValue", checkbox.checked);
+    checkbox.addEventListener("change", handleCheckboxChange);
+  }
 
-        if (checkbox.checked) {
-            enableRule()
+  function handleCheckboxChange() {
+    localStorage.setItem("blockFPJS", checkbox.checked);
 
-        } else {
-            disableRule()
-        }
+    if (checkbox.checked) {
+      enableRule();
+    } else {
+      disableRule();
     }
+  }
 
-    function disableRule() {
-        chrome.declarativeNetRequest.updateEnabledRulesets(
-            {
-                disableRulesetIds: ["ruleset_1"],
-            },
-            () => {}
-        );
-    }
+  function disableRule() {
+    chrome.declarativeNetRequest.updateEnabledRulesets(
+      {
+        disableRulesetIds: ["block_fpjs"],
+      },
+      () => {
+        console.log("block_fpjs rule is disabled");
+      },
+    );
+  }
 
-    function enableRule() {
-        chrome.declarativeNetRequest.updateEnabledRulesets(
-            {
-                enableRulesetIds: ["ruleset_1"],
-            },
-            () => {}
-        );
-    }
+  function enableRule() {
+    chrome.declarativeNetRequest.updateEnabledRulesets(
+      {
+        enableRulesetIds: ["block_fpjs"],
+      },
+      () => {
+        console.log("block_fpjs rule is enabled");
+      },
+    );
+  }
 });

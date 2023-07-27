@@ -1,20 +1,17 @@
 {
   "manifest_version": 3,
-  "name": "FPjs-Blocker",
+  "name": "FPJS-Blocker",
   "version": "1.0.0",
-  "permissions": [
-    "declarativeNetRequest",
-    "declarativeNetRequestFeedback"
-  ],
+  "permissions": ["declarativeNetRequest", "declarativeNetRequestFeedback"],
   "action": {
     "default_popup": "index.html"
   },
   "declarative_net_request": {
     "rule_resources": [
       {
-        "id": "ruleset_1",
+        "id": "block_fpjs",
         "enabled": false,
-        "path":"rule_1.json"
+        "path": "block_fpjs_rule.json"
       }
     ]
   }
