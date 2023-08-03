@@ -1,27 +1,27 @@
-import "./style.css";
-document.querySelector("#app").innerHTML = `
+import './style.css';
+document.querySelector('#app').innerHTML = `
         <div class="checkbox-block">
         <input type="checkbox" id="myCheckbox">
         Block FPJS
       </div>
 `;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const checkbox = document.querySelector("#myCheckbox");
+document.addEventListener('DOMContentLoaded', () => {
+  const checkbox = document.querySelector('#myCheckbox');
   if (checkbox) {
-    const blockFPJS = localStorage.getItem("blockFPJS");
-    const isBlocked = blockFPJS === "true";
+    const blockFPJS = localStorage.getItem('blockFPJS');
+    const isBlocked = blockFPJS === 'true';
     checkbox.checked = isBlocked;
 
     if (isBlocked) {
       enableRule();
     }
 
-    checkbox.addEventListener("change", handleCheckboxChange);
+    checkbox.addEventListener('change', handleCheckboxChange);
   }
 
   function handleCheckboxChange() {
-    localStorage.setItem("blockFPJS", checkbox.checked);
+    localStorage.setItem('blockFPJS', checkbox.checked);
 
     if (checkbox.checked) {
       enableRule();
@@ -33,10 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function disableRule() {
     chrome.declarativeNetRequest.updateEnabledRulesets(
       {
-        disableRulesetIds: ["block_fpjs"],
+        disableRulesetIds: ['block_fpjs'],
       },
       () => {
-        console.log("block_fpjs rule is disabled");
+        console.log('block_fpjs rule is disabled');
       },
     );
   }
@@ -44,10 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function enableRule() {
     chrome.declarativeNetRequest.updateEnabledRulesets(
       {
-        enableRulesetIds: ["block_fpjs"],
+        enableRulesetIds: ['block_fpjs'],
       },
       () => {
-        console.log("block_fpjs rule is enabled");
+        console.log('block_fpjs rule is enabled');
       },
     );
   }

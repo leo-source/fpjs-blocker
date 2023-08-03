@@ -2,9 +2,12 @@
   "manifest_version": 3,
   "name": "FPJS-Blocker",
   "version": "1.0.0",
-  "permissions": ["declarativeNetRequest", "declarativeNetRequestFeedback"],
+  "permissions": ["declarativeNetRequest", "declarativeNetRequestFeedback", "document_idle"],
   "action": {
     "default_popup": "index.html"
+  },
+  "icons": {
+    "128": "icon.png"
   },
   "declarative_net_request": {
     "rule_resources": [
@@ -14,5 +17,23 @@
         "path": "block_fpjs_rule.json"
       }
     ]
-  }
+  },
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "all_frames": true,
+      "matches": [
+        "*://*.supportiv.com/*",
+        "*://*.webapp.supportiv.com/*",
+        "*://*.supportiv-stage.com/*",
+        "*://*.webapp.supportiv-stage.com/*"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "*://*.supportiv.com/*",
+    "*://*.webapp.supportiv.com/*",
+    "*://*.supportiv-stage.com/*",
+    "*://*.webapp.supportiv-stage.com/*"
+  ]
 }
